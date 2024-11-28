@@ -1,0 +1,11 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: redis-container
+    ports:
+      - "6379:6379" # Porta padrão do Redis
+    volumes:
+      - redis-data:/data # Persiste os dados mesmo após o contêiner ser desligado
+
+volumes:
+  redis-data:
