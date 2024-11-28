@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gerar Token</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gerar Voucher</h1>
+        <a href="/">Página Inicial</a>
+        <form action="/vouchers/create" method="post">
+            <button type="submit">Gerar Voucher</button>
+        </form>
+        <div class="ticket" th:if="${token}">
+            <p>Seu Voucher:</p>
+            <h2 th:text="${token}"></h2>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Validar Vouchers</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Validar Vouchers</h1>
+        <a href="/">Página Inicial</a>
+        <form action="/vouchers/validate" method="post">
+            <label for="token1">Token 1:</label>
+            <input type="text" id="token1" name="token1" required>
+            <label for="token2">Token 2:</label>
+            <input type="text" id="token2" name="token2" required>
+            <label for="token3">Token 3:</label>
+            <input type="text" id="token3" name="token3" required>
+            <label for="token4">Token 4:</label>
+            <input type="text" id="token4" name="token4" required>
+            <label for="token5">Token 5:</label>
+            <input type="text" id="token5" name="token5" required>
+            <button type="submit">Validar</button>
+        </form>
+        <p th:if="${message}" th:text="'The Tokens are: ' + ${message}"></p>
+    </div>
+</body>
+</html>
