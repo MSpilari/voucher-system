@@ -1,4 +1,4 @@
-# Voucher Management System
+# 🇺🇸(EN-US) Voucher Management System
 
 A simple system to generate and validate vouchers, designed for a small business like a burger shop. This application uses **Spring Boot** for the backend and **Thymeleaf** for server-side rendering. The focus is on simplicity and functionality.
 
@@ -112,3 +112,120 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 Enjoy using the **Voucher Management System**! 🎉
+
+---
+
+# 🇧🇷(PT-BR) Sistema de Gerenciamento de Vouchers
+
+Um sistema simples para gerar e validar vouchers, projetado para pequenos negócios, como uma hamburgueria. Este aplicativo utiliza **Spring Boot** para o backend e **Thymeleaf** para renderização no lado do servidor. O foco está na simplicidade e funcionalidade.
+
+---
+
+## Funcionalidades
+
+- **Gerar Tokens**: Um token de voucher único pode ser gerado e exibido no formato de um bilhete estilizado.
+- **Validar Tokens**: Insira múltiplos tokens e valide sua autenticidade.
+- **Interface Simples**: Frontend minimalista utilizando templates Thymeleaf com estilização em CSS para uma experiência intuitiva.
+
+---
+
+## Tecnologias Utilizadas
+
+- **Backend**: Spring Boot
+- **Frontend**: Thymeleaf
+- **Estilização**: CSS
+- **Ferramenta de Build**: Maven
+- **Banco de Dados**: Redis para armazenamento de vouchers
+
+---
+
+## Estrutura do Projeto
+
+```
+src
+├── main
+│   ├── java
+│   │   └── dev.mspilari.voucher_api
+│   │       ├── controllers      # Controladores que gerenciam as rotas
+│   │       ├── dto              # Objetos de Transferência de Dados (DTO)
+│   │       ├── services         # Lógica de negócio
+│   │       └── VoucherApiApplication.java # Classe principal
+│   ├── resources
+│   │   ├── static               # CSS e outros recursos estáticos
+│   │   │   └── css
+│   │   │       └── style.css    # Estilos para as páginas web
+│   │   ├── templates            # Templates Thymeleaf (views HTML)
+│   │   │   ├── index.html
+│   │   │   ├── createToken.html
+│   │   │   └── validateTokens.html
+│   │   └── application.properties # Configurações da aplicação
+└── test
+    └── java                     # Testes unitários e de integração
+```
+
+---
+
+## Instalação e Configuração
+
+1. **Clone o Repositório**
+
+   ```bash
+   git clone https://github.com/MSpilari/voucher-system.git
+   cd sistema-vouchers
+   ```
+
+2. **Compile o Projeto**
+   Certifique-se de ter o Maven instalado. Execute:
+
+   ```bash
+   mvn clean install
+   ```
+
+3. **Execute a Aplicação**
+   Inicie a aplicação com o comando:
+
+   ```bash
+   mvn spring-boot:run
+   ```
+
+   O app estará acessível em `http://localhost:8080`.
+
+4. **Acesse o Sistema**
+   - **Página Inicial**: `http://localhost:8080/`
+   - **Gerar Tokens**: `http://localhost:8080/vouchers/create`
+   - **Validar Tokens**: `http://localhost:8080/vouchers/validate`
+
+---
+
+## Como Utilizar
+
+### Gerar Tokens
+
+1. Navegue até a página "Gerar Tokens".
+2. Clique no botão "Gerar Token".
+3. Um bilhete estilizado será exibido com o token gerado.
+
+### Validar Tokens
+
+1. Navegue até a página "Validar Tokens".
+2. Insira cinco tokens nos campos de entrada.
+3. Envie o formulário para verificar os tokens.
+
+---
+
+## Melhorias Futuras
+
+- **Armazenamento de Tokens**: Integração com Redis para persistência e expiração de tokens.
+- **Validação Aprimorada**: Feedback detalhado para tokens inválidos.
+- **Autenticação**: Restringir a geração de tokens a usuários autorizados.
+- **Deploy**: Hospedar em uma plataforma na nuvem (e.g., AWS, Heroku).
+
+---
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+Aproveite o **Sistema de Gerenciamento de Vouchers**! 🎉
