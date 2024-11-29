@@ -1,5 +1,7 @@
 package dev.mspilari.voucher_api.controllers;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,7 +22,9 @@ public class TokenController {
     @PostMapping("/vouchers/create")
     public String createToken(Model model) {
 
-        tokenService.createToken(model);
+        Map<String, String> response = tokenService.generateAndSaveToken();
+
+        model.addAllAttributes(response);
 
         return "createToken";
     }
