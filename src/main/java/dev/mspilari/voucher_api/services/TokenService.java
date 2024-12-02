@@ -5,6 +5,8 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -12,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import dev.mspilari.voucher_api.dto.TokenDto;
 
@@ -66,7 +67,37 @@ public class TokenService {
         return expirationDate.format(formatter);
     }
 
-    public void verifyTokens(Model model, TokenDto tokens) {
-        model.addAttribute("message", "Ok");
+    public Map<String, String> verifyTokens(TokenDto tokens) {
+
+        var response = new HashMap<String, String>();
+        List<String> tokensList = tokenDto2List(tokens);
+
+        if (!areTokensUnique(tokens)) {
+            response.put("erros", "Os tokens não podem ser iguais");
+            return response;
+        }
+
+        if (tokensExist(tokensList)) {
+            response.put("erros", "Tokens informados são inválidos.");
+            return response;
+        }
+
+        redisTemplate.delete(tokensList);
+        response.put("message", "Os tokens são válidos");
+        return response;
+
+    }
+
+    private boolean areTokensUnique(TokenDto tokens) {
+        List<String> tokensList = tokenDto2List(tokens);
+        return new HashSet<>(tokensList).size() == tokensList.size();
+    }
+
+    private List<String> tokenDto2List(TokenDto tokens) {
+        return List.of(tokens.token1(), tokens.token2(), tokens.token3(), tokens.token4(), tokens.token5());
+    }
+
+    private boolean tokensExist(List<String> tokensList) {
+        return redisTemplate.opsForValue().multiGet(tokensList).contains(null);
     }
 }
