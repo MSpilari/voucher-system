@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import dev.mspilari.voucher_api.dto.TokenDto;
 import dev.mspilari.voucher_api.services.TokenService;
+import jakarta.validation.Valid;
 
 @Controller
 public class TokenController {
@@ -30,10 +31,11 @@ public class TokenController {
     }
 
     @PostMapping("/vouchers/validate")
-    public String validateTokens(@ModelAttribute TokenDto tokens, Model model) {
+    public String validateTokens(@Valid @ModelAttribute TokenDto tokens, Model model) {
 
-        tokenService.verifyTokens(model, tokens);
+        Map<String, String> response = tokenService.verifyTokens(tokens);
 
+        model.addAllAttributes(response);
         return "validateTokens";
     }
 
