@@ -22,4 +22,8 @@ public class TokenRedisRepository {
     public boolean allTokensAreValid(List<String> tokensList) {
         return redisTemplate.opsForValue().multiGet(tokensList).contains(null);
     }
+
+    public void deleteAListOfTokens(List<String> keysList) {
+        redisTemplate.delete(keysList);
+    }
 }
