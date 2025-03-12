@@ -80,7 +80,7 @@ public class TokenService {
             return response;
         }
 
-        if (tokensExist(tokensList)) {
+        if (tokenRedisRepository.allTokensAreValid(tokensList)) {
             response.put("erros", "Tokens informados são inválidos.");
             return response;
         }
@@ -98,9 +98,5 @@ public class TokenService {
 
     private List<String> tokenDto2List(TokenDto tokens) {
         return List.of(tokens.token1(), tokens.token2(), tokens.token3(), tokens.token4(), tokens.token5());
-    }
-
-    private boolean tokensExist(List<String> tokensList) {
-        return redisTemplate.opsForValue().multiGet(tokensList).contains(null);
     }
 }
