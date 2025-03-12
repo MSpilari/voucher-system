@@ -1,5 +1,6 @@
 package dev.mspilari.voucher_api.repositories;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,5 +17,9 @@ public class TokenRedisRepository {
 
     public void saveToken(String token, String validity, long timeExpiration) {
         redisTemplate.opsForValue().set(token, "Válido até: " + validity, timeExpiration, TimeUnit.SECONDS);
+    }
+
+    public boolean allTokensAreValid(List<String> tokensList) {
+        return redisTemplate.opsForValue().multiGet(tokensList).contains(null);
     }
 }
