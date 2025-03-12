@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import dev.mspilari.voucher_api.dto.TokenDto;
@@ -25,10 +24,7 @@ public class TokenService {
 
     private TokenRedisRepository tokenRedisRepository;
 
-    private RedisTemplate<String, String> redisTemplate;
-
-    public TokenService(RedisTemplate<String, String> template, TokenRedisRepository tokenRedisRepository) {
-        this.redisTemplate = template;
+    public TokenService(TokenRedisRepository tokenRedisRepository) {
         this.tokenRedisRepository = tokenRedisRepository;
     }
 
