@@ -85,7 +85,8 @@ public class TokenService {
             return response;
         }
 
-        redisTemplate.delete(tokensList);
+        tokenRedisRepository.deleteAListOfTokens(tokensList);
+
         response.put("message", "Os tokens são válidos");
         return response;
 
