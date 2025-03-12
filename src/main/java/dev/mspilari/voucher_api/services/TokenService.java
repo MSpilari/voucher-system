@@ -9,13 +9,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import dev.mspilari.voucher_api.dto.TokenDto;
+import dev.mspilari.voucher_api.repositories.TokenRedisRepository;
 
 @Service
 public class TokenService {
@@ -23,10 +23,13 @@ public class TokenService {
     @Value("${expiration_time:60}")
     private String timeExpirationInSeconds;
 
+    private TokenRedisRepository tokenRedisRepository;
+
     private RedisTemplate<String, String> redisTemplate;
 
-    public TokenService(RedisTemplate<String, String> template) {
+    public TokenService(RedisTemplate<String, String> template, TokenRedisRepository tokenRedisRepository) {
         this.redisTemplate = template;
+        this.tokenRedisRepository = tokenRedisRepository;
     }
 
     public Map<String, String> generateAndSaveToken() {
@@ -37,7 +40,7 @@ public class TokenService {
 
         var response = new HashMap<String, String>();
 
-        redisTemplate.opsForValue().set(token, "Válido até: " + validity, timeExpiration, TimeUnit.SECONDS);
+        tokenRedisRepository.saveToken(token, validity, timeExpiration);
 
         response.put("token", token);
         response.put("validade", validity);
