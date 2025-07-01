@@ -1,0 +1,66 @@
+label {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #e67e22;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+}
+
+/* Botão */
+button {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #e67e22;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ca640f;
+}
+
+.errors {
+    color: #c0392b;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+p{
+    text-align: center;
+    font-size: 1rem;
+    color: #16a085;
+    margin-top: 15px;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+    .container {
+        padding: 25px 20px;
+    }
+
+    input[type="text"] {
+        font-size: 0.95rem;
+    }
+
+    button {
+        font-size: 0.95rem;
+    }
+}

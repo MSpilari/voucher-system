@@ -1,0 +1,44 @@
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.response-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 30px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.response-card h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.response-card p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.valid {
+    color: #27ae60;
+}
+
+.invalid {
+    color: #c0392b;
+}
+
+.emoji {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}

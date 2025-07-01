@@ -1,0 +1,155 @@
+@media (max-width: 600px) {
+    .voucher-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .voucher-text {
+        text-align: center;
+    }
+
+    .voucher-qr img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .ticket {
+        padding: 20px 15px;
+    }
+
+    .ticket h2 {
+        font-size: 1.5rem;
+    }
+
+    .ticket h3, .ticket p {
+        font-size: 1rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
+
+.no-print {
+    margin-top: 1rem;
+}
+
+/* 🎟️ CUPOM (TICKET) REALISTA */
+.ticket {
+    position: relative;
+    background: #fffefa;
+    border: 2px dashed #999;
+    border-radius: 8px;
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05), 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Recortes laterais tipo cupom */
+.ticket::before,
+.ticket::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #f4f4f4;
+    border-radius: 50%;
+    border: 2px solid #999;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.ticket::before {
+    left: -12.5px;
+}
+
+.ticket::after {
+    right: -12.5px;
+}
+
+/* Conteúdo do cupom */
+.ticket h2 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin: 15px 0;
+    word-break: break-word;
+    letter-spacing: 1px;
+}
+
+.ticket p {
+    font-size: 1.1rem;
+    margin: 5px 0;
+    color: #555;
+}
+
+.ticket h3 {
+    font-size: 1.1rem;
+    color: #16a085;
+    margin-top: 10px;
+}
+
+.qr-code {
+    margin-top: 15px;
+}
+.qr-code img {
+    width: 150px;
+    height: 150px;
+}
+
+.voucher-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.voucher-text {
+    flex: 1;
+    text-align: left;
+}
+
+.voucher-qr {
+    flex-shrink: 0;
+}
+
+.voucher-qr img {
+    width: 120px;
+    height: 120px;
+}
+
+
+
+/* ✨ Animação de exibição */
+.ticket {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* 🖨️ Estilos para impressão */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .ticket, .ticket * {
+    visibility: visible;
+  }
+
+  .ticket {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
