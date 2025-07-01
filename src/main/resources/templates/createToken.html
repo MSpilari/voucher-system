@@ -1,22 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gerar Token</title>
+    <title>Gerar Novo Voucher | Hamburgueria</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/createToken.style.css">
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <h1>Gerar Voucher</h1>
-        <a href="/">Página Inicial</a>
-        <form action="/vouchers/create" method="post">
-            <button type="submit">Gerar Voucher</button>
-        </form>
-        <div class="ticket" th:if="${token}">
-            <p>Seu Voucher:</p>
-            <h2 th:text="${token}"></h2>
-            <p>Valido até:</p>
-            <h3 th:text="${validade}"></h3>
-        </div>
-    </div>
+        <a href="/">← Página Inicial</a>
+        <section>
+            <form action="/vouchers/create" method="post">
+                <button type="submit">🎟️ Gerar Voucher</button>
+            </form>
+        </section>
+        <section class="ticket" th:if="${token}">
+            <div class="voucher-content" th:if="${token}">
+                <div class="voucher-text">
+                    <p>Seu Voucher:</p>
+                    <h2 th:text="${token}"></h2>
+                    <p>Valido até:</p>
+                    <h3 th:text="${validade}"></h3>
+                </div>
+                <div class="voucher-qr">
+                    <img th:src="'data:image/png;base64,' + ${qrCode}" alt="QR Code">
+                </div>
+            </div>
+            
+        </section>
+        <button class="no-print" onclick="window.print()">🖨️Imprimir Voucher</button>
+    </main>
 </body>
 </html>
