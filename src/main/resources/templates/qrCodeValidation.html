@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Validação de Voucher(QR Code) | Hamburgueria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/qrCodePage.style.css">
+</head>
+<body>
+
+<div class="response-card">
+    <div th:if="${message == 'Token deletado com sucesso !'}">
+        <div class="emoji">✅</div>
+        <h1 class="valid">Voucher válido!</h1>
+        <p>O token foi validado e já está inutilizado.</p>
+    </div>
+
+    <div th:if="${message != 'Token deletado com sucesso !'}">
+        <div class="emoji">❌</div>
+        <h1 class="invalid">Voucher inválido!</h1>
+        <p th:text="${message}">Este token não é válido.</p>
+    </div>
+</div>
+
+</body>
+</html>
