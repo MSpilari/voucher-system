@@ -3,11 +3,12 @@
 <head>
     <title>Validar Vouchers</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/validateTokens.style.css">
 </head>
 <body>
     <div class="container">
         <h1>Validar Vouchers</h1>
-        <a href="/">Página Inicial</a>
+        <a href="/">← Página Inicial</a>
         <p class="errors" th:if="${erros}" th:text="${erros}"></p>
         <form action="/vouchers/validate" method="post">
             <label for="token1">Token 1:</label>
