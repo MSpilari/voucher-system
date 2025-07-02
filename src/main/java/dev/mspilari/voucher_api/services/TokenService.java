@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import dev.mspilari.voucher_api.dto.TokenDto;
 import dev.mspilari.voucher_api.repositories.TokenRedisRepository;
+import dev.mspilari.voucher_api.utils.NetworkUtils;
+import dev.mspilari.voucher_api.utils.QRCodeGenerator;
 
 @Service
 public class TokenService {
@@ -24,8 +26,15 @@ public class TokenService {
 
     private TokenRedisRepository tokenRedisRepository;
 
-    public TokenService(TokenRedisRepository tokenRedisRepository) {
+    private QRCodeGenerator qrCodeGenerator;
+
+    private NetworkUtils networkUtils;
+
+    public TokenService(TokenRedisRepository tokenRedisRepository, QRCodeGenerator qrCodeGenerator,
+            NetworkUtils networkUtils) {
         this.tokenRedisRepository = tokenRedisRepository;
+        this.qrCodeGenerator = qrCodeGenerator;
+        this.networkUtils = networkUtils;
     }
 
     public Map<String, String> generateAndSaveToken() {
@@ -36,10 +45,15 @@ public class TokenService {
 
         var response = new HashMap<String, String>();
 
+        String ip = networkUtils.getLocalIpAddress();
+        String qrCodeContent = "http://" + ip + ":8080/voucher/validate?token=" + token;
+        String qrCodeBase64 = qrCodeGenerator.generateQRCodeBase64(qrCodeContent, 200, 200);
+
         tokenRedisRepository.saveToken(token, validity, timeExpiration);
 
         response.put("token", token);
         response.put("validade", validity);
+        response.put("qrCode", qrCodeBase64);
 
         return response;
     }
@@ -95,5 +109,21 @@ public class TokenService {
 
     private List<String> tokenDto2List(TokenDto tokens) {
         return List.of(tokens.token1(), tokens.token2(), tokens.token3(), tokens.token4(), tokens.token5());
+    }
+
+    public Map<String, String> verifySingleToken(String token) {
+        var response = new HashMap<String, String>();
+
+        if (!tokenRedisRepository.isValid(token)) {
+            response.put("message", "Token inválido/inexistente");
+            return response;
+        }
+
+        tokenRedisRepository.deleteSingleToken(token);
+
+        response.put("message", "Token deletado com sucesso !");
+
+        return response;
+
     }
 }
