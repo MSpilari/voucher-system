@@ -26,4 +26,13 @@ public class TokenRedisRepository {
     public void deleteAListOfTokens(List<String> keysList) {
         redisTemplate.delete(keysList);
     }
+
+    public boolean isValid(String token) {
+        String value = redisTemplate.opsForValue().get(token);
+        return value != null && !value.isBlank();
+    }
+
+    public void deleteSingleToken(String token) {
+        redisTemplate.delete(token);
+    }
 }
