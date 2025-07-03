@@ -21,11 +21,19 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import dev.mspilari.voucher_api.repositories.TokenRedisRepository;
+import dev.mspilari.voucher_api.utils.NetworkUtils;
+import dev.mspilari.voucher_api.utils.QRCodeGenerator;
 
 @ExtendWith(MockitoExtension.class)
 public class TokenServiceTest {
     @Mock
     private TokenRedisRepository tokenRedisRepository;
+
+    @Mock
+    private QRCodeGenerator qrCodeGenerator;
+
+    @Mock
+    private NetworkUtils networkUtils;
 
     @InjectMocks
     private TokenService tokenService;
