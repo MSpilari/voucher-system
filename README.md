@@ -8,6 +8,7 @@ A simple system to generate and validate vouchers, designed for a small business
 
 - **Generate Tokens**: A unique voucher token can be generated and displayed in the form of a stylized ticket.
 - **Validate Tokens**: Input multiple tokens and validate their authenticity.
+- **Validate token with QR Code**: With your smartphone you can validate the token scanning the Qr Code.
 - **Simple UI**: Minimalistic frontend using Thymeleaf templates with CSS styling for an intuitive user experience.
 
 ---
@@ -49,6 +50,23 @@ src
 ---
 
 ## Installation and Setup
+
+### Docker Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/MSpilari/voucher-system.git
+   cd voucher-system
+   ```
+
+2. **Build the project with docker compose**
+
+   ```bash
+   docker compose up -d
+   ```
+
+### Manual Installation
 
 1. **Clone the Repository**
 
@@ -94,11 +112,14 @@ src
 2. Enter five tokens in the input fields.
 3. Submit the form to verify the tokens.
 
+### Validate Token with Qr Code
+
+1. Scan the token qr code with your smartphone, if its valid a success message will show on the screen, otherwise a fail message will appear.
+
 ---
 
 ## Future Enhancements
 
-- **Token Storage**: Integrate Redis for token persistence and expiration.
 - **Enhanced Validation**: Add detailed feedback for invalid tokens.
 - **Authentication**: Restrict token generation to authorized users.
 - **Deployment**: Host on a cloud platform (e.g., AWS, Heroku).
@@ -125,6 +146,7 @@ Um sistema simples para gerar e validar vouchers, projetado para pequenos negóc
 
 - **Gerar Tokens**: Um token de voucher único pode ser gerado e exibido no formato de um bilhete estilizado.
 - **Validar Tokens**: Insira múltiplos tokens e valide sua autenticidade.
+- **Validar Token com Qr Code**: Valide os tokens com seu smartphone, apenas escaneando o qr code deles.
 - **Interface Simples**: Frontend minimalista utilizando templates Thymeleaf com estilização em CSS para uma experiência intuitiva.
 
 ---
@@ -166,6 +188,23 @@ src
 ---
 
 ## Instalação e Configuração
+
+### Instalação via Docker
+
+1. **Clone o Repositório**
+
+   ```bash
+   git clone https://github.com/MSpilari/voucher-system.git
+   cd voucher-system
+   ```
+
+2. **Rode o projeto com docker compose**
+
+   ```bash
+   docker compose up -d
+   ```
+
+### Instalação Manual
 
 1. **Clone o Repositório**
 
@@ -211,11 +250,14 @@ src
 2. Insira cinco tokens nos campos de entrada.
 3. Envie o formulário para verificar os tokens.
 
+### Validar Tokens via Qr code
+
+1. Escaneie o Qr Code do token e confirme se o mesmo é válido ou não.
+
 ---
 
 ## Melhorias Futuras
 
-- **Armazenamento de Tokens**: Integração com Redis para persistência e expiração de tokens.
 - **Validação Aprimorada**: Feedback detalhado para tokens inválidos.
 - **Autenticação**: Restringir a geração de tokens a usuários autorizados.
 - **Deploy**: Hospedar em uma plataforma na nuvem (e.g., AWS, Heroku).
